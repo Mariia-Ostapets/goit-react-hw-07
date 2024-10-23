@@ -43,16 +43,16 @@ const contactsSlice = createSlice({
         state.error = action.payload;
       });
     builder
-      .addCase(addTask.pending, (state) => {
-        state.isLoading = true;
+      .addCase(addContact.pending, (state) => {
+        state.loading = true;
       })
-      .addCase(addTask.fulfilled, (state, action) => {
-        state.isLoading = false;
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.loading = false;
         state.error = null;
         state.items.push(action.payload);
       })
-      .addCase(addTask.rejected, (state, action) => {
-        state.isLoading = false;
+      .addCase(addContact.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.payload;
       });
   },
