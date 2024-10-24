@@ -2,14 +2,14 @@ import css from "./Contact.module.css";
 import { AiOutlineUser } from "react-icons/ai";
 import { AiOutlinePhone } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-// import { deleteContact } from "../../redux/contactsSlice";
+import { deleteContact } from "../../redux/contactsOps";
 
 export default function Contact({ contact }) {
   const dispatch = useDispatch();
 
-  // const handleDelete = () => {
-  //   // dispatch(deleteContact(contact.id));
-  // };
+  const handleDelete = () => {
+    dispatch(deleteContact(contact.id));
+  };
 
   return (
     <div className={css.contactCard}>
@@ -23,10 +23,9 @@ export default function Contact({ contact }) {
           {contact.number}
         </p>
       </div>
-      {/* <button className={css.btn} onClick={handleDelete}>
+      <button className={css.btn} onClick={handleDelete}>
         Delete
-      </button> */}
-      <button className={css.btn}>Delete</button>
+      </button>
     </div>
   );
 }

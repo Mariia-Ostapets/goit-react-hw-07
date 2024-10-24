@@ -1,10 +1,8 @@
 import css from "./ContactForm.module.css";
-import { nanoid } from "nanoid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsOps";
-// import { addContact } from "../../redux/contactsSlice";
 
 const initialValues = { name: "", number: "" };
 
@@ -25,16 +23,12 @@ export default function ContactForm() {
   const handleSubmit = (values, actions) => {
     dispatch(
       addContact({
-        id: nanoid(),
         name: values.name,
         number: values.number,
       })
     );
     actions.resetForm();
   };
-
-  const nameId = nanoid();
-  const numberId = nanoid();
 
   return (
     <Formik
@@ -43,20 +37,15 @@ export default function ContactForm() {
       validationSchema={FeedbackSchema}
     >
       <Form className={css.form}>
-        <label htmlFor={nameId}>Name</label>
-        <Field
-          className={css.field}
-          type="text"
-          name="name"
-          id={nameId}
-        ></Field>
+        <label htmlFor="name">Name</label>
+        <Field className={css.field} type="text" name="name" id="name"></Field>
         <ErrorMessage className={css.error} name="name" component="div" />
-        <label htmlFor={numberId}>Number</label>
+        <label htmlFor="number">Number</label>
         <Field
           className={css.field}
           type="text"
           name="number"
-          id={numberId}
+          id="number"
         ></Field>
         <ErrorMessage className={css.error} name="number" component="div" />
         <button type="submit">Add contact</button>
